@@ -1,6 +1,9 @@
 import Head from "next/head";
 
-export default function Home() {
+import { getCompanies } from "@/services/contentful-service";
+
+export default function Home({ companies }) {
+  console.log(companies);
   return (
     <>
       <Head>
@@ -16,3 +19,21 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  try {
+    const companies = await getCompanies();
+
+    return {
+      props: {
+        companies,
+      },
+    };
+  } catch (error) {
+    console.log(error);
+
+    return {
+      props: {},
+    };
+  }
+};
