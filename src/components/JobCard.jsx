@@ -1,5 +1,4 @@
 const JobCard = ({ job }) => {
-  console.log(job);
   return (
     <>
       <div>JobCard</div>

@@ -2,10 +2,9 @@ import Head from "next/head";
 
 import JobsList from "@/components/JobsList";
 
-import { getCompanies } from "@/services/contentful-service";
+import { getJobs } from "@/services/contentful-service";
 
-export default function Home({ companies }) {
-  console.log(companies);
+export default function Home({ jobs }) {
   return (
     <>
       <Head>
@@ -18,7 +17,7 @@ export default function Home({ companies }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <JobsList />
+        <JobsList jobs={jobs} />
       </main>
     </>
   );
@@ -26,16 +25,13 @@ export default function Home({ companies }) {
 
 export const getStaticProps = async () => {
   try {
-    const companies = await getCompanies();
-
+    const jobs = await getJobs();
     return {
       props: {
-        companies,
+        jobs,
       },
     };
   } catch (error) {
-    console.log(error);
-
     return {
       props: {},
     };
