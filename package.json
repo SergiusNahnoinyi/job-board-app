@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format:check": "prettier --check .",
+    "format": "prettier --write . --config ./.prettierrc",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -27,7 +30,6 @@
     "eslint": "^8.33.0",
     "eslint-config-next": "^13.1.6",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-tailwindcss": "^3.8.3",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
@@ -36,6 +38,7 @@
     "tailwindcss": "^3.2.4"
   },
   "lint-staged": {
-    "*.{js,jsx,css,md}": ["eslint --fix", "prettier --write"]
+    "*.{js,jsx}": "eslint --fix",
+    "*.{js,jsx,css,json,md}": "prettier --write --config ./.prettierrc"
   }
 }

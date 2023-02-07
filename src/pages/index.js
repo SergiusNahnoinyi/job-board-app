@@ -28,12 +28,12 @@ export const getStaticProps = async () => {
     const jobs = await getJobs();
     return {
       props: {
-        jobs,
-      },
+        jobs
+      }
     };
   } catch (error) {
     return {
-      props: {},
+      props: {}
     };
   }
 };
