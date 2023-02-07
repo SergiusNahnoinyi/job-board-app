@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -17,15 +17,15 @@ module.exports = {
           600: "#309d80",
           700: "#2b8d73",
           800: "#267e66",
-          900: "#226e5a",
-        },
-      },
-    },
+          900: "#226e5a"
+        }
+      }
+    }
   },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/line-clamp"),
-    require("@tailwindcss/aspect-ratio"),
-  ],
+    require("@tailwindcss/aspect-ratio")
+  ]
 };
