@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+import JobsList from "@/components/JobsList";
+
 import { getCompanies } from "@/services/contentful-service";
 
 export default function Home({ companies }) {
@@ -15,7 +17,9 @@ export default function Home({ companies }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>This is main</main>
+      <main>
+        <JobsList />
+      </main>
     </>
   );
 }
