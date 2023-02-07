@@ -6,7 +6,7 @@ const JobsList = ({ jobs }) => {
   return (
     <div>
       {jobs.map((job) => (
-        <JobCard job={job.fields} key={job.sys.id} />
+        <JobCard job={job} key={job.sys.id} />
       ))}
     </div>
   );
