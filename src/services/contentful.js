@@ -24,3 +24,16 @@ export const getJobsSlugs = async () => {
 
   return jobSlugs;
 };
+
+export const getJobBySlug = async ({ slug }) => {
+  const job = await client.getEntries({
+    content_type: "job",
+    "fields.slug": slug,
+    include: 2
+  });
+
+  if (job.items.length === 0) return null;
+  const jobBySlug = job.items[0];
+
+  return jobBySlug;
+};

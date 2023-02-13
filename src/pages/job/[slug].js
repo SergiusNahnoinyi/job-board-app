@@ -1,7 +1,6 @@
 import JobDetails from "@/components/JobDetails";
 
-import { getJobs } from "@/services/contentful";
-import { getJobsSlugs } from "@/services/contentful";
+import { getJobsSlugs, getJobBySlug } from "@/services/contentful";
 
 export default function JobDetailsPage({ job }) {
   return <JobDetails job={job} />;
@@ -27,8 +26,7 @@ export const getStaticProps = async ({ params }) => {
   const slug = params.slug;
 
   try {
-    const jobs = await getJobs();
-    const job = jobs.filter((job) => job.fields.slug === slug)[0];
+    const job = await getJobBySlug(slug);
 
     return {
       props: {
