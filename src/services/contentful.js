@@ -25,7 +25,7 @@ export const getJobsSlugs = async () => {
   return jobSlugs;
 };
 
-export const getJobBySlug = async ({ slug }) => {
+export const getJobBySlug = async (slug) => {
   const job = await client.getEntries({
     content_type: "job",
     "fields.slug": slug,
