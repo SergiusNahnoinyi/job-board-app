@@ -8,7 +8,6 @@ import { renderRichText } from "@/utils/renderRichText";
 import JobCard from "./JobCard";
 
 const JobDetails = ({ job }) => {
-  console.log(job.fields.title);
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">
       {/* Page content */}
