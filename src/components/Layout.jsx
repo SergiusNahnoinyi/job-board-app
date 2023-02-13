@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className="m-2	 mx-auto max-w-screen-2xl bg-slate-50 p-2 sm:px-6 lg:px-8">
+      <main className="m-2 mx-auto max-w-screen-2xl bg-slate-50 p-2 sm:px-6 lg:px-8">
         {children}
       </main>
       <Footer />
