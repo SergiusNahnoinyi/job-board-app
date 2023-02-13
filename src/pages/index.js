@@ -1,6 +1,6 @@
 import JobsList from "@/components/JobsList";
 
-import { getJobs } from "@/services/contentful-service";
+import { getJobs } from "@/services/contentful";
 
 export default function Home({ jobs }) {
   return <JobsList jobs={jobs} />;

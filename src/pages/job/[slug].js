@@ -1,6 +1,7 @@
 import JobDetails from "@/components/JobDetails";
 
-import { getJobs } from "@/services/contentful-service";
+import { getJobs } from "@/services/contentful";
+import { getJobsSlugs } from "@/services/contentful";
 
 export default function JobDetailsPage({ job }) {
   return <JobDetails job={job} />;
@@ -8,8 +9,7 @@ export default function JobDetailsPage({ job }) {
 
 export const getStaticPaths = async () => {
   try {
-    const jobs = await getJobs();
-    const slugs = jobs.map((job) => job.fields.slug);
+    const slugs = await getJobsSlugs();
     const paths = slugs.map((slug) => ({ params: { slug } }));
 
     return {

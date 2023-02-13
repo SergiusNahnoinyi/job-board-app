@@ -14,3 +14,13 @@ export const getJobs = async () => {
   const jobs = await client.getEntries({ content_type: "job" });
   return jobs.items;
 };
+
+export const getJobsSlugs = async () => {
+  const slugs = await client.getEntries({
+    content_type: "job",
+    select: ["fields.slug"]
+  });
+  const jobSlugs = slugs.items.map((slug) => slug.fields.slug);
+
+  return jobSlugs;
+};
