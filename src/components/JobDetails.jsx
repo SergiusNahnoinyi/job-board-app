@@ -1,16 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import {
-  MailIcon,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  ChevronLeftIcon
-} from "@heroicons/react/24/solid";
+import { ArrowRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
+
+import { renderRichText } from "@/utils/renderRichText";
 
 import JobCard from "./JobCard";
 
-export default function JobDetails({ job }) {
+const JobDetails = ({ job }) => {
+  console.log(job.fields.title);
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8 w-full">
       {/* Page content */}
@@ -26,21 +24,74 @@ export default function JobDetails({ job }) {
               Back To Jobs
             </Link>
           </div>
-          <div className="text-sm text-slate-500 italic mb-2">
-            Posted On
+          <div className="text-xs text-slate-500 italic mb-2">
+            Posted On:{" "}
             <span className="font-semibold">
+              {" "}
               {new Date(job.fields.postedDate).toLocaleDateString()}
             </span>
+            {"  -  "}
+            Job Category:{" "}
+            <span className="font-semibold">{job.fields.jobCategory}</span>
           </div>
           <header className="mb-4">
             {/* Title */}
             <h1 className="text-2xl md:text-3xl text-slate-800 font-bold">
               {job.fields.title}
             </h1>
-            <div className="text-md text-slate-500">
-              {job.fields.jobType} / {job.fields.experienceLevel} /{" "}
-              {job.fields.company.fields.city}{" "}
-              {job.fields.remote && "/ Remote Ok"}
+            {/* Important Job Details */}
+            <div className="md:flex justify-between items-center space-y-4 md:space-y-0 space-x-2 mt-2">
+              {/* Left side */}
+              <div className="flex items-start space-x-3 md:space-x-4">
+                <div>
+                  <div className="text-sm text-slate-500">
+                    {job.fields.jobType} / {job.fields.experienceLevel} /{" "}
+                    {job.fields.company.fields.city} /{" "}
+                    {job.fields.remote ? "Remote" : "Office"}
+                  </div>
+                  {/* Skill Tags */}
+                  <div>
+                    <div className="flex flex-wrap items-center -m-1">
+                      {job.metadata.tags?.map((tag) => (
+                        <div className="m-1" key={tag.sys.id}>
+                          <Link
+                            className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
+                            href="#"
+                          >
+                            {tag.sys.id.replace("skill", "")}
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Right side */}
+              <div className="flex flex-col space-y-1 items-end">
+                <div className="text-sm text-slate-900">
+                  £{job.fields.sallary} / Year
+                </div>
+                <div className="flex items-center space-x-4 pl-10 md:pl-0">
+                  {job.fields.featured && (
+                    <div
+                      className={`text-xs inline-flex font-medium rounded-full text-center px-2.5 py-1 bg-amber-100 text-amber-600`}
+                    >
+                      Featured
+                    </div>
+                  )}
+                  <button className="text-slate-300 hover:text-slate-400 mt-1">
+                    <span className="sr-only">Bookmark</span>
+                    <svg
+                      className="w-3 h-4 fill-current"
+                      width="12"
+                      height="16"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M2 0C.9 0 0 .9 0 2v14l6-3 6 3V2c0-1.1-.9-2-2-2H2Z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </header>
           {/* Company information (mobile) */}
@@ -91,31 +142,6 @@ export default function JobDetails({ job }) {
               </Link>
             </div>
           </div>
-
-          {/* Tags */}
-          <div className="mb-6">
-            <div className="flex flex-wrap items-center -m-1">
-              {job.skills &&
-                job.skills.map((tag) => (
-                  <div className="m-1" key={skill}>
-                    <a
-                      className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                      href="#"
-                    >
-                      {skill}
-                    </a>
-                  </div>
-                ))}
-              <div className="m-1">
-                <Link
-                  className="text-xs inline-flex font-medium bg-indigo-100 text-indigo-600 rounded-full text-center px-2.5 py-1"
-                  href="#"
-                >
-                  aaa
-                </Link>
-              </div>
-            </div>
-          </div>
           <hr className="my-6 border-t border-slate-200" />
           {/* The Role */}
           <div>
@@ -125,7 +151,7 @@ export default function JobDetails({ job }) {
             <div
               className="space-y-6 text-slate-500 font-normal text-sm"
               dangerouslySetInnerHTML={{
-                __html: job.jobDescription
+                __html: renderRichText(job.fields.jobDescription)
               }}
             ></div>
           </div>
@@ -138,7 +164,7 @@ export default function JobDetails({ job }) {
             <div
               className="space-y-6 text-slate-500 font-normal text-sm"
               dangerouslySetInnerHTML={{
-                __html: job.aboutYou
+                __html: renderRichText(job.fields.aboutYou)
               }}
             ></div>
           </div>
@@ -146,12 +172,12 @@ export default function JobDetails({ job }) {
           {/* Your Responsabilities */}
           <div>
             <h2 className="text-xl leading-snug text-slate-800 font-bold mb-2">
-              Your Responsabilities
+              Your Responsibilities
             </h2>
             <div
               className="space-y-6 text-slate-500 font-normal text-sm"
               dangerouslySetInnerHTML={{
-                __html: job.jobResponsibilities
+                __html: renderRichText(job.fields.jobResponsibility)
               }}
             ></div>
           </div>
@@ -164,7 +190,7 @@ export default function JobDetails({ job }) {
             <div
               className="space-y-6 text-slate-500 font-normal text-sm"
               dangerouslySetInnerHTML={{
-                __html: job.remunerationPackage
+                __html: renderRichText(job.fields.remunerationPackage)
               }}
             ></div>
           </div>
@@ -180,7 +206,7 @@ export default function JobDetails({ job }) {
                 href={job.fields.applicationLink}
                 className="inline-flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 text-white"
               >
-                Apply Today
+                Apply Today{" "}
                 <ArrowRightIcon
                   className="ml-4 mr-3 h-5 w-5"
                   aria-hidden="true"
@@ -225,20 +251,19 @@ export default function JobDetails({ job }) {
             </div>
           </div>
           <hr className="my-6 border-t border-slate-200" />
-
           {/* Related Jobs */}
-          {/* {job.fields.relatedJobs.length ? (
+          {job.fields.relatedJobs?.length ? (
             <div>
               <h2 className="text-xl leading-snug text-slate-800 font-bold mb-6">
                 Related Jobs
               </h2>
               <div className="space-y-2 mt-6">
-                {job.relatedJobs.map((job) => {
-                  return <JobCard key={job.id} job={job} />;
+                {job.fields.relatedJobs?.map((job) => {
+                  return <JobCard key={job.sys.id} job={job} />;
                 })}
               </div>
             </div>
-          ) : null} */}
+          ) : null}
         </div>
         {/* Sidebar */}
         <div className="hidden lg:block space-y-4">
@@ -272,7 +297,7 @@ export default function JobDetails({ job }) {
                 href={job.fields.applicationLink}
                 className="inline-flex items-center justify-center w-full p-2 bg-indigo-500 hover:bg-indigo-600 text-white"
               >
-                Apply Today
+                Apply Today{" "}
                 <ArrowRightIcon
                   className="ml-4 mr-3 h-5 w-5"
                   aria-hidden="true"
@@ -294,4 +319,6 @@ export default function JobDetails({ job }) {
       </div>
     </div>
   );
-}
+};
+
+export default JobDetails;
