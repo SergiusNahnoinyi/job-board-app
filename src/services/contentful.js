@@ -7,12 +7,47 @@ const client = createClient({
 
 export const getCompanies = async () => {
   const companies = await client.getEntries({ content_type: "company" });
+
   return companies.items;
+};
+
+export const getCompaniesSlugs = async () => {
+  const slugs = await client.getEntries({
+    content_type: "company",
+    select: ["fields.slug"]
+  });
+  const companySlugs = slugs.items.map((slug) => slug.fields.slug);
+
+  return companySlugs;
+};
+
+export const getCompanyBySlug = async (slug) => {
+  const company = await client.getEntries({
+    content_type: "company",
+    "fields.slug": slug,
+    include: 2
+  });
+
+  if (company.items.length == 0) return null;
+  const companyBySlug = company.items[0];
+
+  return companyBySlug;
 };
 
 export const getJobs = async () => {
   const jobs = await client.getEntries({ content_type: "job" });
+
   return jobs.items;
+};
+
+export const getJobsByCompanyId = async (id) => {
+  const jobsByCompanyId = await client.getEntries({
+    content_type: "job",
+    "fields.company.sys.id": id,
+    include: 2
+  });
+
+  return jobsByCompanyId.items;
 };
 
 export const getJobsSlugs = async () => {
