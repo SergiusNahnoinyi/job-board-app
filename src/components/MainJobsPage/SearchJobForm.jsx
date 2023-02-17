@@ -1,15 +1,6 @@
-const SearchJobForm = ({
-  searchFormState,
-  setSearchFormState,
-  setDisplayedJobs
-}) => {
+const SearchJobForm = ({ searchFormState, setSearchFormState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchFormState);
-    if (searchFormState) {
-      alert(`Searching: ${searchFormState}`);
-      //TODO: create a function in the datalayer to fetch the jobs based on the search query
-    }
   };
 
   return (

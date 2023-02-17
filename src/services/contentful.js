@@ -79,6 +79,9 @@ export const searchJobs = async (query) => {
     include: 2
   };
 
+  if (query.searchBarText) {
+    contentfullQuery["query"] = query.searchBarText;
+  }
   if (query.remote) contentfullQuery["fields.remote"] = query.remote;
   if (query.featuredJobsOnly)
     contentfullQuery["fields.featured"] = query.featuredJobsOnly;

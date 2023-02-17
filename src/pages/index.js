@@ -38,7 +38,7 @@ export default function MainJobsPage({ jobs }) {
     if (secondRender.current) {
       secondRender.current = false;
     } else {
-      if (searchFormState.length >= 3) {
+      if (searchFormState.length >= 3 || searchFormState.length === 0) {
         const formsStates = { searchFormState, sideBarFormState };
         searchJobs("api/search-jobs", formsStates, setDisplayedJobs);
       }
