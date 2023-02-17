@@ -5,7 +5,7 @@ import { ArrowRightIcon, ChevronLeftIcon } from "@heroicons/react/24/solid";
 
 import { renderRichText } from "@/utils/renderRichText";
 
-import JobCard from "./JobCard";
+import JobCard from "../Common/JobCard";
 
 const JobDetails = ({ job }) => {
   return (

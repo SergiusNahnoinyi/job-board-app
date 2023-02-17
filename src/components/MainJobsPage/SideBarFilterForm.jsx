@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SideBarForm() {
+const SideBarFilterForm = () => {
   const [companySetting, setCompanySetting] = useState(true);
   const [immigrationSetting, setImmigrationSetting] = useState(false);
 
@@ -226,6 +226,6 @@ function SideBarForm() {
       </div>
     </div>
   );
-}
+};
 
-export default SideBarForm;
+export default SideBarFilterForm;

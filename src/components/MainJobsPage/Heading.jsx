@@ -1,5 +1,5 @@
 const Heading = ({ jobs }) => {
-  const title = `Found ${jobs.length} Jobs`;
+  let title = `Found ${jobs.length} Jobs`;
 
   switch (jobs.length) {
     case 0: {
