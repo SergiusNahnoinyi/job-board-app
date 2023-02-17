@@ -72,3 +72,36 @@ export const getJobBySlug = async (slug) => {
 
   return jobBySlug;
 };
+
+export const searchJobs = async (query) => {
+  const contentfullQuery = {
+    content_type: "job",
+    include: 2
+  };
+
+  if (query.searchBarText) {
+    contentfullQuery["query"] = query.searchBarText;
+  }
+  if (query.remote) contentfullQuery["fields.remote"] = query.remote;
+  if (query.featuredJobsOnly)
+    contentfullQuery["fields.featured"] = query.featuredJobsOnly;
+
+  contentfullQuery["fields.salary[gte]"] = query.minBaseSalary;
+  contentfullQuery["fields.salary[lte]"] = query.maxBaseSalary;
+
+  const searchedJobs = await client.getEntries(contentfullQuery);
+
+  const filteredJobs = searchedJobs.items.filter((job) => {
+    const hasMatchingExperienceLevel =
+      query.experienceLevels.length === 0 ||
+      query.experienceLevels.includes(job.fields.experienceLevel);
+
+    const hasMatchingJobType =
+      query.jobTypes.length === 0 ||
+      query.jobTypes.includes(job.fields.jobType);
+
+    return hasMatchingExperienceLevel && hasMatchingJobType;
+  });
+
+  return filteredJobs;
+};
