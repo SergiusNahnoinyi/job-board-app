@@ -24,7 +24,8 @@ export const getCompaniesSlugs = async () => {
 export const getCompanyBySlug = async (slug) => {
   const company = await client.getEntries({
     content_type: "company",
-    "fields.slug": slug
+    "fields.slug": slug,
+    include: 2
   });
 
   if (company.items.length == 0) return null;
@@ -42,7 +43,8 @@ export const getJobs = async () => {
 export const getJobsByCompanyId = async (id) => {
   const jobsByCompanyId = await client.getEntries({
     content_type: "job",
-    "fields.company.sys.id": id
+    "fields.company.sys.id": id,
+    include: 2
   });
 
   return jobsByCompanyId.items;
