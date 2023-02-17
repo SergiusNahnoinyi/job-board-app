@@ -8,29 +8,20 @@ import {
   baseSalaryRangesOptions
 } from "@/constants/filterOptions";
 
-const SideBarFilterForm = ({
-  sideBarFormState,
-  setSideBarFormState,
-  setDisplayedJobs
-}) => {
-  const handleRemoteChange = (checked) => {
-    console.log(checked);
-    //TODO: send request and filter jobs
+const SideBarFilterForm = ({ sideBarFormState, setSideBarFormState }) => {
+  const handleRemoteChange = () => {
     setSideBarFormState((prevState) => {
       return { ...prevState, remote: !prevState.remote };
     });
   };
 
-  const handleFeaturedJobsOnlyChange = (checked) => {
-    console.log(checked);
-    //TODO: send request and filter jobs
+  const handleFeaturedJobsOnlyChange = () => {
     setSideBarFormState((prevState) => {
       return { ...prevState, featuredJobsOnly: !prevState.featuredJobsOnly };
     });
   };
 
   const handleJobTypeSelect = (e, option) => {
-    console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const jobTypes = [...prevState.jobTypes];
@@ -48,7 +39,6 @@ const SideBarFilterForm = ({
   };
 
   const handleExperienceLevelsSelect = (e, option) => {
-    console.log(e.target.checked, option);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const experienceLevels = [...prevState.experienceLevels];
@@ -68,7 +58,6 @@ const SideBarFilterForm = ({
   };
 
   const handleBaseSalaryRangesSelect = (e, option, bounds) => {
-    console.log(e.target.checked, option, bounds);
     if (e.target.checked) {
       setSideBarFormState((prevState) => {
         const baseSalaryOptions = [...prevState.baseSalaryOptions];
@@ -83,7 +72,7 @@ const SideBarFilterForm = ({
           baseSalaryOptions,
           baseSalaryBounds
         };
-        console.log(newFormState);
+
         return newFormState;
       });
     } else {
@@ -98,7 +87,6 @@ const SideBarFilterForm = ({
           )
         };
 
-        console.log(newFormState);
         return newFormState;
       });
     }
@@ -251,63 +239,6 @@ const SideBarFilterForm = ({
                 );
               })}
             </ul>
-          </div>
-        </div>
-      </div>
-      {/* Alert */}
-      <div className="relative bg-indigo-200 rounded-sm p-5 min-w-60">
-        <div className="absolute bottom-0 -mb-3">
-          <svg
-            width="44"
-            height="42"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlnsXlink="http://www.w3.org/1999/xlink"
-          >
-            <defs>
-              <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="ill-b">
-                <stop stopColor="#A5B4FC" offset="0%" />
-                <stop stopColor="#818CF8" offset="100%" />
-              </linearGradient>
-              <linearGradient
-                x1="50%"
-                y1="24.537%"
-                x2="50%"
-                y2="100%"
-                id="ill-c"
-              >
-                <stop stopColor="#4338CA" offset="0%" />
-                <stop stopColor="#6366F1" stopOpacity="0" offset="100%" />
-              </linearGradient>
-              <path id="ill-a" d="m20 0 20 40-20-6.25L0 40z" />
-            </defs>
-            <g
-              transform="scale(-1 1) rotate(-51 -11.267 67.017)"
-              fill="none"
-              fillRule="evenodd"
-            >
-              <mask id="ill-d" fill="#fff">
-                <use xlinkHref="#ill-a" />
-              </mask>
-              <use fill="url(#ill-b)" xlinkHref="#ill-a" />
-              <path
-                fill="url(#ill-c)"
-                mask="url(#ill-d)"
-                d="M20.586-7.913h25v47.5h-25z"
-              />
-            </g>
-          </svg>
-        </div>
-        <div className="relative">
-          <div className="text-sm font-medium text-slate-800 mb-2">
-            Remember to keep track of your job research.
-          </div>
-          <div className="text-right">
-            <a
-              className="text-sm font-medium text-indigo-500 hover:text-indigo-600"
-              href="#0"
-            >
-              Create Alert -&gt;
-            </a>
           </div>
         </div>
       </div>

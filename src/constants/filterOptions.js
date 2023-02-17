@@ -32,8 +32,9 @@ export const baseSalaryRangesOptions = [
 ];
 
 export const options = [
-  { value: "date-posted", display: "Date Posted" },
-  { value: "company", display: "Company" },
+  { value: "date-posted-asc", display: "Date Posted ASC" },
+  { value: "date-posted-desc", display: "Date Posted DESC" },
   { value: "salary-asc", display: "Salary ASC" },
-  { value: "salary-desc", display: "Salary DESC" }
+  { value: "salary-desc", display: "Salary DESC" },
+  { value: "company", display: "Company" }
 ];

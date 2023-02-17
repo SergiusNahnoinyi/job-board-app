@@ -1,17 +1,41 @@
 import { useState } from "react";
 
+import {
+  sortJobsByPostedDate,
+  sortJobsBySalary,
+  sortJobsByCompanyName
+} from "@/utils/sortJobs";
+
 import { options } from "@/constants/filterOptions";
 
 const SortJobsForm = ({ jobs, setDisplayedJobs }) => {
-  const [sortby, setSortby] = useState("date-posted");
+  const [sortBy, setSortBy] = useState("date-posted-desc");
 
   const handleChange = (e) => {
     e.preventDefault();
-    const newSortby = e.target.value;
-    setSortby(newSortby);
-    alert(`Sorting by: ${newSortby}`);
+    const newSortBy = e.target.value;
 
-    //TODO: create a function to sort the jobs based on the new selected value
+    if (newSortBy === "date-posted-asc") {
+      const sortedJobs = sortJobsByPostedDate({ jobs, ASC: true });
+      setDisplayedJobs(sortedJobs);
+    }
+    if (newSortBy === "date-posted-desc") {
+      const sortedJobs = sortJobsByPostedDate({ jobs, ASC: false });
+      setDisplayedJobs(sortedJobs);
+    }
+    if (newSortBy === "salary-asc") {
+      const sortedJobs = sortJobsBySalary({ jobs, ASC: true });
+      setDisplayedJobs(sortedJobs);
+    }
+    if (newSortBy === "salary-desc") {
+      const sortedJobs = sortJobsBySalary({ jobs, ASC: false });
+      setDisplayedJobs(sortedJobs);
+    }
+    if (newSortBy === "company") {
+      const sortedJobs = sortJobsByCompanyName({ jobs });
+      setDisplayedJobs(sortedJobs);
+    }
+    setSortBy(newSortBy);
   };
 
   return (
@@ -29,7 +53,7 @@ const SortJobsForm = ({ jobs, setDisplayedJobs }) => {
           name="sorting"
           onChange={handleChange}
           className="mt-1 block  pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-sm"
-          defaultValue={sortby}
+          defaultValue={sortBy}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
