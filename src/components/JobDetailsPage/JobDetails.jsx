@@ -68,7 +68,7 @@ const JobDetails = ({ job }) => {
               {/* Right side */}
               <div className="flex flex-col space-y-1 items-end">
                 <div className="text-sm text-slate-900">
-                  £{job.fields.sallary} / Year
+                  £{job.fields.salary} / Month
                 </div>
                 <div className="flex items-center space-x-4 pl-10 md:pl-0">
                   {job.fields.featured && (
