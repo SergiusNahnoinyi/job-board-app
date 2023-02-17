@@ -1,5 +1,7 @@
 import { searchJobs } from "@/services/contentful";
 
+import { capitalizeFirstLetter } from "@/utils/capitalizeFirstLetter";
+
 export default async function handler(req, res) {
   const { searchFormState, sideBarFormState } = req.body;
 
@@ -13,9 +15,19 @@ export default async function handler(req, res) {
       ? Math.max(...sideBarFormState.baseSalaryBounds)
       : 100000;
 
+  const jobTypes = sideBarFormState.jobTypes.map((jobType) =>
+    capitalizeFirstLetter(jobType)
+  );
+
+  const experienceLevels = sideBarFormState.experienceLevels.map(
+    (experienceLevel) => capitalizeFirstLetter(experienceLevel)
+  );
+
   const query = {
     ...sideBarFormState,
     searchBarText: searchFormState,
+    jobTypes,
+    experienceLevels,
     minBaseSalary,
     maxBaseSalary
   };

@@ -88,5 +88,17 @@ export const searchJobs = async (query) => {
 
   const searchedJobs = await client.getEntries(contentfullQuery);
 
-  return searchedJobs.items;
+  const filteredJobs = searchedJobs.items.filter((job) => {
+    const hasMatchingExperienceLevel =
+      query.experienceLevels.length === 0 ||
+      query.experienceLevels.includes(job.fields.experienceLevel);
+
+    const hasMatchingJobType =
+      query.jobTypes.length === 0 ||
+      query.jobTypes.includes(job.fields.jobType);
+
+    return hasMatchingExperienceLevel && hasMatchingJobType;
+  });
+
+  return filteredJobs;
 };
