@@ -72,3 +72,18 @@ export const getJobBySlug = async (slug) => {
 
   return jobBySlug;
 };
+
+export const searchJobs = async (query) => {
+  const contentfullQuery = {
+    content_type: "job",
+    include: 2
+  };
+
+  if (query.remote) contentfullQuery["fields.remote"] = query.remote;
+  if (query.featuredJobsOnly)
+    contentfullQuery["fields.featured"] = query.featuredJobsOnly;
+
+  const searchedJobs = await client.getEntries(contentfullQuery);
+
+  return searchedJobs.items;
+};

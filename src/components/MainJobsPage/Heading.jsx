@@ -14,13 +14,7 @@ const Heading = ({ jobs }) => {
       break;
   }
 
-  return (
-    <div>
-      <div className="flex justify-between items-center mb-4">
-        <div className="text-sm text-slate-500 italic">{title}</div>
-      </div>
-    </div>
-  );
+  return <div className="text-sm text-slate-500 italic">{title}</div>;
 };
 
 export default Heading;

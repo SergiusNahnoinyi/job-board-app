@@ -1,7 +1,20 @@
-const SearchJobForm = () => {
+const SearchJobForm = ({
+  searchFormState,
+  setSearchFormState,
+  setDisplayedJobs
+}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(searchFormState);
+    if (searchFormState) {
+      alert(`Searching: ${searchFormState}`);
+      //TODO: create a function in the datalayer to fetch the jobs based on the search query
+    }
+  };
+
   return (
     <div className="mb-5">
-      <form className="relative">
+      <form className="relative" onSubmit={handleSubmit}>
         <label htmlFor="job-search" className="sr-only">
           Search
         </label>
@@ -10,6 +23,8 @@ const SearchJobForm = () => {
           className="form-input w-full pl-9 focus:border-slate-300"
           type="search"
           placeholder="Search job title or keyword…"
+          value={searchFormState}
+          onChange={(e) => setSearchFormState(e.target.value)}
         />
         <button
           className="absolute inset-0 right-auto group"
