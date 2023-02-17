@@ -1,4 +1,4 @@
-import CompanyDetails from "../../components/CompanyDetails";
+import CompanyDetails from "../../components/CompanyDetailsPage/CompanyDetails";
 
 import {
   getCompaniesSlugs,

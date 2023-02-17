@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 
-import JobsList from "./JobsList";
+import JobsList from "../Common/JobsList";
 
 const CompanyDetails = ({ company, companyJobs }) => {
   return (

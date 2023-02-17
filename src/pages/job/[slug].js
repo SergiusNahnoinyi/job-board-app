@@ -1,4 +1,4 @@
-import JobDetails from "@/components/JobDetails";
+import JobDetails from "@/components/JobDetailsPage/JobDetails";
 
 import { getJobsSlugs, getJobBySlug } from "@/services/contentful";
 
