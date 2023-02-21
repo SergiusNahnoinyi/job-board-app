@@ -12,7 +12,7 @@ const Header = () => {
       <div className="mb-8">
         <div className="relative h-60 w-full lg:h-64">
           <Image
-            className="object-cover scale-105"
+            className="object-cover"
             src={Banner}
             alt="Job-board banner"
             fill
