@@ -121,6 +121,7 @@ const JobDetails = ({ job }) => {
             <div className="space-y-2 sm:flex sm:space-y-0 sm:space-x-2">
               <Link
                 href={job.fields.applicationLink}
+                target="_blank"
                 className="flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Apply Today
@@ -203,6 +204,7 @@ const JobDetails = ({ job }) => {
               {/* Apply button */}
               <Link
                 href={job.fields.applicationLink}
+                target="_blank"
                 className="inline-flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 text-white"
               >
                 Apply Today{" "}
@@ -294,6 +296,7 @@ const JobDetails = ({ job }) => {
             <div className="space-y-2">
               <Link
                 href={job.fields.applicationLink}
+                target="_blank"
                 className="inline-flex items-center justify-center w-full p-2 bg-indigo-500 hover:bg-indigo-600 text-white"
               >
                 Apply Today{" "}
@@ -304,6 +307,7 @@ const JobDetails = ({ job }) => {
               </Link>
               <Link
                 href={`/company/${job.fields.company.fields.slug}`}
+                target="_blank"
                 className="flex items-center justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-slate-700 ring-slate-600 bg-slate-200 hover:bg-slate-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-700"
               >
                 All Company Jobs

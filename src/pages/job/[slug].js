@@ -1,8 +1,10 @@
 import JobDetails from "@/components/JobDetailsPage/JobDetails";
+import Loader from "@/components/Common/Loader";
 
 import { getJobsSlugs, getJobBySlug } from "@/services/contentful";
 
 export default function JobDetailsPage({ job }) {
+  if (!job) return <Loader message="Loading job data ..." />;
   return <JobDetails job={job} />;
 }
 
@@ -13,7 +15,7 @@ export const getStaticPaths = async () => {
 
     return {
       paths,
-      fallback: false
+      fallback: true
     };
   } catch (error) {
     console.log(error);
@@ -31,7 +33,8 @@ export const getStaticProps = async ({ params }) => {
     return {
       props: {
         job
-      }
+      },
+      revalidate: 5
     };
   } catch (error) {
     console.log(error);

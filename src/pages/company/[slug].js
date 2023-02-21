@@ -1,4 +1,5 @@
 import CompanyDetails from "../../components/CompanyDetailsPage/CompanyDetails";
+import Loader from "@/components/Common/Loader";
 
 import {
   getCompaniesSlugs,
@@ -7,6 +8,8 @@ import {
 } from "@/services/contentful";
 
 export default function CompanyDetailsPage({ company, companyJobs }) {
+  if (!company) return <Loader message="Loading company data ..." />;
+
   return <CompanyDetails company={company} companyJobs={companyJobs} />;
 }
 
@@ -17,7 +20,7 @@ export const getStaticPaths = async () => {
 
     return {
       paths,
-      fallback: false
+      fallback: true
     };
   } catch (error) {
     console.log(error);
@@ -37,7 +40,8 @@ export const getStaticProps = async ({ params }) => {
       props: {
         company,
         companyJobs
-      }
+      },
+      revalidate: 5
     };
   } catch (error) {
     console.log(error);

@@ -77,7 +77,8 @@ export const getStaticProps = async () => {
     return {
       props: {
         jobs
-      }
+      },
+      revalidate: 5
     };
   } catch (error) {
     return {
