@@ -37,7 +37,8 @@ export const getStaticProps = async ({ params }) => {
       props: {
         company,
         companyJobs
-      }
+      },
+      revalidate: 5
     };
   } catch (error) {
     console.log(error);

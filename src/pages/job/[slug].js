@@ -31,7 +31,8 @@ export const getStaticProps = async ({ params }) => {
     return {
       props: {
         job
-      }
+      },
+      revalidate: 5
     };
   } catch (error) {
     console.log(error);
