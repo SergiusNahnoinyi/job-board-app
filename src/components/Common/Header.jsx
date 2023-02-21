@@ -46,6 +46,7 @@ const Header = () => {
               <div className="mt-4 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <Link
                   href="https://t.me/sergiusnahnoinyijr"
+                  target="_blank"
                   className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-liftedgreen-800 hover:bg-liftedgreen-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-liftedgreen-500"
                 >
                   <EnvelopeIcon
