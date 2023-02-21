@@ -67,6 +67,7 @@ const CompanyDetails = ({ company, companyJobs }) => {
                   </svg>
                   <Link
                     className="text-sm font-medium whitespace-nowrap text-indigo-500 hover:text-indigo-700 ml-2"
+                    target="_blank"
                     href={company.fields.website}
                   >
                     {company.fields.website}
