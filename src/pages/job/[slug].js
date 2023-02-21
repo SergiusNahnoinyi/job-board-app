@@ -30,6 +30,15 @@ export const getStaticProps = async ({ params }) => {
   try {
     const job = await getJobBySlug(slug);
 
+    if (!job) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false
+        }
+      };
+    }
+
     return {
       props: {
         job
