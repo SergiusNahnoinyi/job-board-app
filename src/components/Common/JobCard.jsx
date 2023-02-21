@@ -29,6 +29,7 @@ const JobCard = ({ job }) => {
           <div>
             <Link
               href={`/job/${job.fields.slug}`}
+              target="_blank"
               className="inline-flex font-semibold text-slate-800"
             >
               {job.fields.title}
