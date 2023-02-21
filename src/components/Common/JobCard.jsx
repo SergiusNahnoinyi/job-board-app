@@ -43,7 +43,7 @@ const JobCard = ({ job }) => {
         {/* Right side */}
         <div className="flex flex-col space-y-1 items-end">
           <div className="text-sm text-slate-900">
-            £{job.fields.salary} / Month
+            ${job.fields.salary} / Month
           </div>
           <div className="flex items-center space-x-4 pl-10 md:pl-0">
             <div className="text-sm text-slate-500 italic whitespace-nowrap">
