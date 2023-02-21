@@ -36,6 +36,15 @@ export const getStaticProps = async ({ params }) => {
     const company = await getCompanyBySlug(slug);
     const companyJobs = await getJobsByCompanyId(company.sys.id);
 
+    if (!company) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false
+        }
+      };
+    }
+
     return {
       props: {
         company,
